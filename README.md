@@ -9,6 +9,9 @@ Nuestra plataforma está dirigida a:
 * **Compradores digitales:** Usuarios que prefieren la comodidad de comprar desde cualquier dispositivo.
 
 ## 👥 Integrantes
+**Raúl morales**
+**Marlon Oviedo**
+**David chaparro**
 
 ## 💡 Inspiraciones y Referencias
 Para el diseño y flujo de navegación, nos basamos en:
