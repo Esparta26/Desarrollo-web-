@@ -43,7 +43,7 @@ Para el diseño y flujo de navegación, nos basamos en:
 
 1.  **Clonar el repositorio:**
     ```bash
-    git clone [https://github.com/tu-usuario/stylehub.git](https://github.com/tu-usuario/stylehub.git)
+    (https://github.com/Esparta26/Desarrollo-web-)
     ```
 2.  **Instalar dependencias:**
     ```bash
