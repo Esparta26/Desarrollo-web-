@@ -57,11 +57,7 @@ Para el diseño y flujo de navegación, nos basamos en:
     ```
 
 ## 📋 Tablero de Trabajo (Sprints)
-Utilizamos una metodología ágil gestionada en **GitHub Projects**.
-* **Sprint 1:** Maquetación de UI y configuración de Base de Datos.
-* **Sprint 2:** Autenticación (JWT) y CRUD de productos.
-* **Sprint 3:** Lógica de carrito y proceso de Checkout.
-* **Sprint 4:** Dashboard administrativo y Testing.
+https://trello.com/invite/b/69c5a7d20de0257d37504fbd/ATTIb243740c2941c4bd41245728f81f5161656DAB62/sprint-3-stylehub
 
 ---
 **Proyecto desarrollado con fines educativos para UNISANGIL - ING. SISTEMAS**
