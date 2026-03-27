@@ -1,0 +1,32 @@
+<%- include('./partials/head') %>
+<%- include('./partials/header') %>
+
+<main class="container mx-auto px-6 py-12">
+    <div class="mb-12 text-center">
+        <h1 class="text-5xl font-black tracking-tighter uppercase italic">NEW DROP ⚡</h1>
+        <p class="text-gray-500 mt-2 italic font-medium tracking-widest uppercase">StyleHub - San Gil</p>
+    </div>
+
+    <section>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <% items.forEach(product => { %>
+                <div class="group border border-gray-100 rounded-2xl p-4 hover:shadow-2xl transition duration-300 bg-white">
+                    <div class="relative overflow-hidden rounded-xl aspect-square bg-gray-100 mb-4">
+                        <img src="<%= product.img %>" alt="<%= product.name %>" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    
+                    <h4 class="font-bold text-lg mb-1"><%= product.name %></h4>
+                    <p class="text-gray-600 mb-4 italic">$<%= product.price.toLocaleString('es-CO') %></p>
+                    
+                    <div class="flex flex-col gap-2">
+                        <a href="/productDetail" class="text-center bg-black text-white py-2 rounded-lg font-bold hover:bg-gray-800 transition text-sm">
+                            Ver detalle
+                        </a>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </section>
+</main>
+
+<%- include('./partials/footer') %>

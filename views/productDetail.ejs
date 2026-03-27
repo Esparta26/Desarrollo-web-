@@ -1,0 +1,49 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<main class="container mx-auto px-6 py-16 flex-grow">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+        
+        <div class="rounded-3xl overflow-hidden bg-gray-100 shadow-sm transition hover:shadow-xl duration-500">
+            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80" 
+                 alt="Camiseta" class="w-full h-full object-cover">
+        </div>
+
+        <div class="flex flex-col h-full justify-center">
+            <div class="mb-8 border-b border-gray-100 pb-8">
+                <span class="text-xs font-black uppercase tracking-[0.3em] text-gray-400 mb-2 block italic">New Arrival</span>
+                <h2 class="text-5xl font-black italic tracking-tighter uppercase mb-2">Camiseta Boxy Fit</h2>
+                <p class="text-3xl font-light text-gray-900">$50.000</p>
+            </div>
+
+            <div class="mb-8">
+                <h3 class="text-sm font-bold uppercase tracking-widest text-gray-400 mb-4 italic">Descripción</h3>
+                <p class="text-gray-600 leading-relaxed text-lg">
+                    Nuestra Camiseta Boxy Fit está diseñada para ofrecer el máximo confort sin perder el estilo urbano. 
+                    Fabricada en algodón premium de alto gramaje para una caída perfecta.
+                </p>
+            </div>
+
+            <div class="mb-10">
+                <h3 class="text-sm font-bold uppercase tracking-widest text-gray-400 mb-4 italic">Seleccionar Talla</h3>
+                <div class="flex gap-3">
+                    <button class="w-12 h-12 border-2 border-black flex items-center justify-center font-bold rounded-lg hover:bg-black hover:text-white transition">S</button>
+                    <button class="w-12 h-12 border-2 border-black flex items-center justify-center font-bold rounded-lg hover:bg-black hover:text-white transition">M</button>
+                    <button class="w-12 h-12 border-2 border-black bg-black text-white flex items-center justify-center font-bold rounded-lg">L</button>
+                    <button class="w-12 h-12 border-2 border-black flex items-center justify-center font-bold rounded-lg hover:bg-black hover:text-white transition">XL</button>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <button class="w-full bg-black text-white py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-gray-800 transition shadow-2xl transform active:scale-[0.98]">
+                    Agregar al carrito
+                </button>
+                <a href="/" class="block text-center text-gray-400 font-bold uppercase text-xs tracking-widest hover:text-black transition py-2">
+                    Volver al catálogo
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<%- include('partials/footer') %>
