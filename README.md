@@ -23,21 +23,15 @@ Para el diseño y flujo de navegación, nos basamos en:
 
 6.  ## 🚀 Tecnologías Utilizadas
 
-### Frontend
-* **Next.js 14/15:** Framework de React con SSR.
-* **Tailwind CSS:** Estilizado moderno y responsivo.
-* **shadcn/ui:** Componentes de UI accesibles.
-* **Zustand:** Gestión de estado global (carrito).
-
-### Backend & Base de Datos
-* **Node.js / Express:** Servidor y API RESTful.
-* **TypeScript:** Tipado seguro en todo el proyecto.
-* **PostgreSQL:** Base de datos relacional.
-* **Prisma ORM:** Modelado de datos y migraciones.
-
-### Otros
-* **Docker:** Contenerización del entorno.
-* **Vitest:** Pruebas unitarias.
+🖥️ Frontend
+HTML5: Estructura de las páginas web
+CSS3: Estilos y diseño visual responsivo
+JavaScript: Interactividad en el cliente
+⚙️ Backend
+Node.js: Entorno de ejecución para el servidor
+Express: Framework para la creación de rutas y manejo de peticiones
+🧩 Motor de Plantillas
+EJS: Permite generar páginas dinámicas reutilizando componentes
 
 ## ⚙️ Instalación y Uso
 
