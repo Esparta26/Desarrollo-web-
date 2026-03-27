@@ -1,55 +1,82 @@
-<%- include('partials/head') %>
-<%- include('partials/header') %>
+<%- include('partials/head') %> <%- include('partials/header') %>
 
 <main class="container mx-auto px-6 py-16 flex-grow">
-    <div class="max-w-4xl mx-auto">
-        <div class="mb-12 border-b border-gray-100 pb-6">
-            <h2 class="text-4xl font-black italic tracking-tighter uppercase">Carrito de compras</h2>
-            <p class="text-gray-500 mt-2">Revisa tus prendas antes de finalizar el pedido.</p>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            <div class="lg:col-span-2 space-y-6">
-                <div class="flex items-center gap-6 p-6 bg-white rounded-2xl border border-gray-100 shadow-sm">
-                    <div class="w-24 h-24 bg-gray-100 rounded-xl overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=300&q=80" 
-                             alt="Camiseta" class="w-full h-full object-cover">
-                    </div>
-                    <div class="flex-grow">
-                        <h3 class="font-bold text-xl uppercase tracking-tight">Camiseta Boxy Fit</h3>
-                        <p class="text-gray-400 text-sm italic mb-2">Talla: L | Color: Blanco</p>
-                        <p class="font-black text-lg">$50.000</p>
-                    </div>
-                    <button class="text-gray-300 hover:text-red-500 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                        </svg>
-                    </button>
-                </div>
-                </div>
-
-            <div class="bg-gray-50 p-8 rounded-3xl h-fit border border-gray-100">
-                <h3 class="text-xl font-bold mb-6 uppercase tracking-widest">Resumen</h3>
-                <div class="space-y-4 mb-6 border-b border-gray-200 pb-6">
-                    <div class="flex justify-between">
-                        <span class="text-gray-600">Subtotal</span>
-                        <span class="font-bold">$50.000</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="text-gray-600">Envío</span>
-                        <span class="text-green-600 font-bold italic">Gratis</span>
-                    </div>
-                </div>
-                <div class="flex justify-between text-2xl font-black mb-8">
-                    <span>TOTAL</span>
-                    <span>$50.000</span>
-                </div>
-                <button class="w-full bg-black text-white py-4 rounded-xl font-black uppercase tracking-widest hover:bg-gray-800 transition shadow-xl transform active:scale-95">
-                    Finalizar Compra
-                </button>
-            </div>
-        </div>
+  <div class="max-w-4xl mx-auto">
+    <div class="mb-12 border-b border-gray-100 pb-6">
+      <h2 class="text-4xl font-black italic tracking-tighter uppercase">
+        Carrito de compras
+      </h2>
+      <p class="text-gray-500 mt-2">
+        Revisa tus prendas antes de finalizar el pedido.
+      </p>
     </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div class="lg:col-span-2 space-y-6">
+        <div
+          class="flex items-center gap-6 p-6 bg-white rounded-2xl border border-gray-100 shadow-sm"
+        >
+          <div class="w-24 h-24 bg-gray-100 rounded-xl overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=300&q=80"
+              alt="Camiseta"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="flex-grow">
+            <h3 class="font-bold text-xl uppercase tracking-tight">
+              Camiseta Boxy Fit
+            </h3>
+            <p class="text-gray-400 text-sm italic mb-2">
+              Talla: L | Color: Blanco
+            </p>
+            <p class="font-black text-lg">$50.000</p>
+          </div>
+          <button class="text-gray-300 hover:text-red-500 transition">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-gray-50 p-8 rounded-3xl h-fit border border-gray-100">
+        <h3 class="text-xl font-bold mb-6 uppercase tracking-widest">
+          Resumen
+        </h3>
+        <div class="space-y-4 mb-6 border-b border-gray-200 pb-6">
+          <div class="flex justify-between">
+            <span class="text-gray-600">Subtotal</span>
+            <span class="font-bold">$50.000</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-600">Envío</span>
+            <span class="text-green-600 font-bold italic">Gratis</span>
+          </div>
+        </div>
+        <div class="flex justify-between text-2xl font-black mb-8">
+          <span>TOTAL</span>
+          <span>$50.000</span>
+        </div>
+        <button
+          class="w-full bg-black text-white py-4 rounded-xl font-black uppercase tracking-widest hover:bg-gray-800 transition shadow-xl transform active:scale-95"
+        >
+          Finalizar Compra
+        </button>
+      </div>
+    </div>
+  </div>
 </main>
 
 <%- include('partials/footer') %>
