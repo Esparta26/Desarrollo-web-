@@ -1,0 +1,62 @@
+<%- include('partials/head') %> <%- include('partials/header') %>
+
+<main class="container mx-auto px-6 py-16 flex-grow">
+  <div class="max-w-3xl mx-auto">
+    <div class="mb-12 border-b border-gray-100 pb-6">
+      <h2 class="text-4xl font-black italic tracking-tighter uppercase">
+        Crear producto
+      </h2>
+      <p class="text-gray-500 mt-2">Agrega un nuevo producto a la tienda.</p>
+    </div>
+
+    <form action="/create" method="POST">
+      <div>
+        <label class="block text-sm font-bold mb-2">Nombre</label>
+        <input
+          type="text"
+          name="name"
+          required
+          class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-bold mb-2">Precio</label>
+        <input
+          type="number"
+          name="price"
+          required
+          class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-bold mb-2">Imagen (URL)</label>
+        <input
+          type="text"
+          name="img"
+          required
+          class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-bold mb-2">Descripción</label>
+        <textarea
+          name="description"
+          rows="4"
+          required
+          class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
+        ></textarea>
+      </div>
+
+      <button
+        class="w-full bg-black text-white py-4 rounded-xl font-black uppercase tracking-widest hover:bg-gray-800 transition shadow-xl transform active:scale-95"
+      >
+        Crear producto
+      </button>
+    </form>
+  </div>
+</main>
+
+<%- include('partials/footer') %>

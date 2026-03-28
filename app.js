@@ -69,8 +69,13 @@ app.get("/productDetail/:id", (req, res) => {
   res.render("productDetail", { producto });
 });
 
-app.get("/products/create", (req, res) => {
-  res.render("products/create");
+app.get("/create", (req, res) => {
+  res.render("create");
+});
+
+app.get("/edit/:id", (req, res) => {
+  const producto = productos.find((p) => p.id == req.params.id);
+  res.render("edit", { producto });
 });
 
 app.post("/login", (req, res) => {
@@ -81,6 +86,35 @@ app.post("/login", (req, res) => {
 app.post("/register", (req, res) => {
   console.log("Nuevo registro:", req.body.fullName);
   res.redirect("/");
+});
+
+app.post("/create", (req, res) => {
+  const { name, price, img, description } = req.body;
+
+  const nuevoProducto = {
+    id: productos.length + 1,
+    name,
+    price,
+    img,
+    description,
+  };
+
+  productos.push(nuevoProducto);
+
+  res.redirect("/home");
+});
+
+app.post("/edit/:id", (req, res) => {
+  const producto = productos.find((p) => p.id == req.params.id);
+
+  if (producto) {
+    producto.name = req.body.name;
+    producto.price = req.body.price;
+    producto.img = req.body.img;
+    producto.description = req.body.description;
+  }
+
+  res.redirect("/home");
 });
 
 const PORT = 3000;
