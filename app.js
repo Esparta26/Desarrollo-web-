@@ -50,24 +50,24 @@ app.use((req, res, next) => {
 
 const authMiddleware = (req, res, next) => {
   if (!req.session.userLogged) {
-    return res.redirect("/"); 
+    return res.redirect("/");
   }
   next();
 };
 
 const guestMiddleware = (req, res, next) => {
   if (req.session.userLogged) {
-    return res.redirect("/home"); 
+    return res.redirect("/home");
   }
   next();
 };
 
 app.get("/", guestMiddleware, (req, res) => {
-  res.render("login");
+  res.render("login", { errors: [] });
 });
 
 app.get("/register", guestMiddleware, (req, res) => {
-  res.render("register");
+  res.render("register", { errors: [] });
 });
 
 app.get("/login", guestMiddleware, (req, res) => {
@@ -153,7 +153,7 @@ app.get("/productDetail/:id", authMiddleware, async (req, res) => {
 });
 
 app.get("/create", authMiddleware, (req, res) => {
-  res.render("products/create");
+  res.render("products/create", { errors: [] });
 });
 
 app.post("/create", authMiddleware, async (req, res) => {

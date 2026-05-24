@@ -10,61 +10,115 @@
       <p class="text-gray-500 mt-2">Agrega un nuevo producto a la tienda.</p>
     </div>
 
-    <form action="/create" method="POST" id="productForm" class="space-y-6">
+    <% if (errors && errors.length > 0) { %>
+      <div class="mb-6 bg-red-50 border border-red-200 rounded-xl p-4">
+        <ul class="space-y-1">
+          <% errors.forEach(error => { %>
+            <li class="text-red-600 text-sm font-medium">• <%= error.msg %></li>
+          <% }) %>
+        </ul>
+      </div>
+    <% } %>
+
+    <form id="createForm" action="/create" method="POST" class="space-y-6" novalidate>
       <div>
         <label class="block text-sm font-bold mb-2">Nombre</label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
-        />
-        <p class="text-red-500 text-xs font-bold mt-1 italic hidden" id="error-name"></p>
+        <input type="text" name="name" id="name"
+          class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black" />
+        <p class="text-red-500 text-xs mt-1 hidden" id="nameError"></p>
       </div>
 
       <div>
         <label class="block text-sm font-bold mb-2">Precio</label>
-        <input
-          type="number"
-          name="price"
-          id="price"
-          class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
-        />
-        <p class="text-red-500 text-xs font-bold mt-1 italic hidden" id="error-price"></p>
+        <input type="number" name="price" id="price"
+          class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black" />
+        <p class="text-red-500 text-xs mt-1 hidden" id="priceError"></p>
       </div>
 
       <div>
         <label class="block text-sm font-bold mb-2">Imagen (URL)</label>
-        <input
-          type="text"
-          name="img"
-          id="img"
-          class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
-        />
-        <p class="text-red-500 text-xs font-bold mt-1 italic hidden" id="error-img"></p>
+        <input type="text" name="img" id="img"
+          class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black" />
+        <p class="text-red-500 text-xs mt-1 hidden" id="imgError"></p>
       </div>
 
       <div>
         <label class="block text-sm font-bold mb-2">Descripción</label>
-        <textarea
-          name="description"
-          id="description"
-          rows="4"
-          class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
-        ></textarea>
-        <p class="text-red-500 text-xs font-bold mt-1 italic hidden" id="error-description"></p>
+        <textarea name="description" id="description" rows="4"
+          class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"></textarea>
+        <p class="text-red-500 text-xs mt-1 hidden" id="descriptionError"></p>
       </div>
 
       <button
-        type="submit"
-        class="w-full bg-black text-white py-4 rounded-xl font-black uppercase tracking-widest hover:bg-gray-800 transition shadow-xl transform active:scale-95"
-      >
+        class="w-full bg-black text-white py-4 rounded-xl font-black uppercase tracking-widest hover:bg-gray-800 transition shadow-xl transform active:scale-95">
         Crear producto
       </button>
     </form>
   </div>
 </main>
 
-<script src="/js/productValidator.js"></script>
+<script>
+  document.getElementById("createForm").addEventListener("submit", function (e) {
+    let valid = true;
+
+    const name = document.getElementById("name");
+    const nameError = document.getElementById("nameError");
+    const price = document.getElementById("price");
+    const priceError = document.getElementById("priceError");
+    const img = document.getElementById("img");
+    const imgError = document.getElementById("imgError");
+    const description = document.getElementById("description");
+    const descriptionError = document.getElementById("descriptionError");
+
+    nameError.classList.add("hidden");
+    priceError.classList.add("hidden");
+    imgError.classList.add("hidden");
+    descriptionError.classList.add("hidden");
+
+    if (!name.value.trim()) {
+      nameError.textContent = "El nombre es obligatorio.";
+      nameError.classList.remove("hidden");
+      valid = false;
+    } else if (name.value.trim().length < 5) {
+      nameError.textContent = "El nombre debe tener al menos 5 caracteres.";
+      nameError.classList.remove("hidden");
+      valid = false;
+    }
+
+    if (!price.value.trim()) {
+      priceError.textContent = "El precio es obligatorio.";
+      priceError.classList.remove("hidden");
+      valid = false;
+    } else if (isNaN(price.value)) {
+      priceError.textContent = "El precio debe ser un número.";
+      priceError.classList.remove("hidden");
+      valid = false;
+    }
+
+    const imgRegex = /\.(jpg|jpeg|png|gif)$/i;
+    if (!img.value.trim()) {
+      imgError.textContent = "La imagen es obligatoria.";
+      imgError.classList.remove("hidden");
+      valid = false;
+    } else if (!imgRegex.test(img.value.trim())) {
+      imgError.textContent = "La imagen debe ser un archivo válido (JPG, JPEG, PNG, GIF).";
+      imgError.classList.remove("hidden");
+      valid = false;
+    }
+
+    if (!description.value.trim()) {
+      descriptionError.textContent = "La descripción es obligatoria.";
+      descriptionError.classList.remove("hidden");
+      valid = false;
+    } else if (description.value.trim().length < 20) {
+      descriptionError.textContent = "La descripción debe tener al menos 20 caracteres.";
+      descriptionError.classList.remove("hidden");
+      valid = false;
+    }
+
+    if (!valid) e.preventDefault();
+  });
+</script>
 
 <%- include('partials/footer') %>
+

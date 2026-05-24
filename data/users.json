@@ -38,5 +38,11 @@
     "email": "angeldch1018@gmail.com",
     "password": "$2b$10$MPEDfUqGeP.Vc9tckaPHt.bHT1.AttoQQq3mU3kl00pyF5YAkaZlu",
     "role": "user"
+  },
+  {
+    "id": 6,
+    "fullName": "angel chaparro",
+    "email": "ejemplo@gmail.com",
+    "password": "$2b$10$.1EWbfAjJpUIXS.5e99lGeanZun2PxjQFChTvmUceeayynhN.RNOG"
   }
 ]
