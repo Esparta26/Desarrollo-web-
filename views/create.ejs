@@ -1,4 +1,5 @@
-<%- include('partials/head') %> <%- include('partials/header') %>
+<%- include('partials/head') %> 
+<%- include('partials/header') %>
 
 <main class="container mx-auto px-6 py-16 flex-grow">
   <div class="max-w-3xl mx-auto">
@@ -9,15 +10,16 @@
       <p class="text-gray-500 mt-2">Agrega un nuevo producto a la tienda.</p>
     </div>
 
-    <form action="/create" method="POST">
+    <form action="/create" method="POST" id="productForm" class="space-y-6">
       <div>
         <label class="block text-sm font-bold mb-2">Nombre</label>
         <input
           type="text"
           name="name"
-          required
+          id="name"
           class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
         />
+        <p class="text-red-500 text-xs font-bold mt-1 italic hidden" id="error-name"></p>
       </div>
 
       <div>
@@ -25,9 +27,10 @@
         <input
           type="number"
           name="price"
-          required
+          id="price"
           class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
         />
+        <p class="text-red-500 text-xs font-bold mt-1 italic hidden" id="error-price"></p>
       </div>
 
       <div>
@@ -35,22 +38,25 @@
         <input
           type="text"
           name="img"
-          required
+          id="img"
           class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
         />
+        <p class="text-red-500 text-xs font-bold mt-1 italic hidden" id="error-img"></p>
       </div>
 
       <div>
         <label class="block text-sm font-bold mb-2">Descripción</label>
         <textarea
           name="description"
+          id="description"
           rows="4"
-          required
           class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
         ></textarea>
+        <p class="text-red-500 text-xs font-bold mt-1 italic hidden" id="error-description"></p>
       </div>
 
       <button
+        type="submit"
         class="w-full bg-black text-white py-4 rounded-xl font-black uppercase tracking-widest hover:bg-gray-800 transition shadow-xl transform active:scale-95"
       >
         Crear producto
@@ -58,5 +64,7 @@
     </form>
   </div>
 </main>
+
+<script src="/js/productValidator.js"></script>
 
 <%- include('partials/footer') %>
