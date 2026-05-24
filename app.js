@@ -5,6 +5,8 @@ const session = require("express-session");
 const cookies = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const db = require('./models');
+const { body, validationResult } = require("express-validator");
+
 const app = express();
 
 app.set("view engine", "ejs");
@@ -48,6 +50,7 @@ app.use((req, res, next) => {
   next();
 });
 
+// Middlewares de rutas
 const authMiddleware = (req, res, next) => {
   if (!req.session.userLogged) {
     return res.redirect("/"); 
@@ -61,6 +64,40 @@ const guestMiddleware = (req, res, next) => {
   }
   next();
 };
+
+const validateRegister = [
+  body("fullName")
+    .notEmpty().withMessage("El nombre completo es obligatorio.")
+    .isLength({ min: 2 }).withMessage("El nombre debe tener al menos 2 caracteres."),
+  body("email")
+    .notEmpty().withMessage("El correo electrónico es obligatorio.")
+    .isEmail().withMessage("Por favor ingresa un correo electrónico válido."),
+  body("password")
+    .notEmpty().withMessage("La contraseña es obligatoria.")
+    .isLength({ min: 8 }).withMessage("La contraseña debe tener al menos 8 caracteres.")
+    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])/).withMessage("Debe tener una mayúscula, una minúscula, un número y un carácter especial.")
+];
+
+const validateProduct = [
+  body("name")
+    .notEmpty().withMessage("El nombre del producto es obligatorio.")
+    .isLength({ min: 5 }).withMessage("El nombre debe tener al menos 5 caracteres."),
+  body("price")
+    .notEmpty().withMessage("El precio es obligatorio.")
+    .custom(value => Number(value) > 0).withMessage("El precio debe ser mayor a 0."),
+  body("img")
+    .notEmpty().withMessage("La URL de la imagen es obligatoria.")
+    .custom(value => {
+      const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+      if (!allowedExtensions.test(value.split('?')[0])) {
+        throw new Error("La imagen debe ser un formato válido (.jpg, .jpeg, .png o .gif).");
+      }
+      return true;
+    }),
+  body("description")
+    .notEmpty().withMessage("La descripción es obligatoria.")
+    .isLength({ min: 20 }).withMessage("La descripción debe tener al menos 20 caracteres.")
+];
 
 app.get("/", guestMiddleware, (req, res) => {
   res.render("login");
@@ -100,7 +137,13 @@ app.post("/login", guestMiddleware, async (req, res) => {
   }
 });
 
-app.post("/register", guestMiddleware, async (req, res) => {
+app.post("/register", guestMiddleware, validateRegister, async (req, res) => {
+  const errors = validationResult(req);
+  
+  if (!errors.isEmpty()) {
+    return res.redirect("/register");
+  }
+
   try {
     const { fullName, email, password } = req.body;
     const hashedPassword = bcrypt.hashSync(password, 10);
@@ -156,10 +199,15 @@ app.get("/create", authMiddleware, (req, res) => {
   res.render("products/create");
 });
 
-app.post("/create", authMiddleware, async (req, res) => {
+app.post("/create", authMiddleware, validateProduct, async (req, res) => {
+  const errors = validationResult(req);
+  
+  if (!errors.isEmpty()) {
+    return res.redirect("/create");
+  }
+
   try {
     const { name, price, img, description, category, size } = req.body;
-
     const slug = name.toLowerCase().replace(/ /g, '-');
 
     await db.Product.create({
@@ -189,7 +237,12 @@ app.get("/edit/:id", authMiddleware, async (req, res) => {
   }
 });
 
-app.put("/edit/:id", authMiddleware, async (req, res) => {
+app.put("/edit/:id", authMiddleware, validateProduct, async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.redirect(`/edit/${req.params.id}`);
+  }
+
   try {
     const { name, price, img, description, category, size } = req.body;
     
@@ -221,6 +274,11 @@ app.delete("/delete/:id", authMiddleware, async (req, res) => {
   }
 });
 
+const apiController = require('./apiController'); 
+app.get('/api/users', apiController.usersList);
+app.get('/api/users/:id', apiController.userDetail);
+app.get('/api/products', apiController.productsList);
+app.get('/api/products/:id', apiController.productDetail);
 db.sequelize.authenticate()
   .then(() => {
     console.log('¡Conexión a MySQL (stylehub_db) establecida con éxito! 🚀');
