@@ -1,51 +1,43 @@
-'use strict';
-const { Model } = require('sequelize');
-
 module.exports = (sequelize, DataTypes) => {
-  class Product extends Model {
-    static associate(models) {
-      Product.belongsTo(models.Category, { foreignKey: 'category_id' });
-      Product.belongsTo(models.Brand, { foreignKey: 'brand_id' });
-      Product.hasMany(models.ProductSize, { foreignKey: 'product_id' });
-    }
-  }
-
-  Product.init({
+  const Product = sequelize.define('Product', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     name: {
-      type: DataTypes.STRING(150),
+      type: DataTypes.STRING(100),
+      allowNull: false
+    },
+    price: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    img: {
+      type: DataTypes.TEXT,
       allowNull: false
     },
     description: {
-      type: DataTypes.TEXT
-    },
-    price: {
-      type: DataTypes.DECIMAL(10, 2),
+      type: DataTypes.TEXT,
       allowNull: false
     },
     stock: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       defaultValue: 0
     },
-    img: {
-      type: DataTypes.STRING(255)
-    },
     slug: {
-      type: DataTypes.STRING(200),
-      allowNull: false,
-      unique: true
+      type: DataTypes.STRING(100),
+      allowNull: false
     },
     category_id: {
       type: DataTypes.INTEGER
     },
-    brand_id: {
+    size_id: {
       type: DataTypes.INTEGER
     }
   }, {
-    sequelize,
-    modelName: 'Product',
     tableName: 'products',
-    timestamps: true
+    timestamps: false
   });
 
   return Product;
